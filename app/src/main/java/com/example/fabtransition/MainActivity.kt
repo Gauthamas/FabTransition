@@ -47,6 +47,16 @@ class MainActivity : AppCompatActivity() {
 
     )
 
+    private fun createWidthAnimator (start: Int, end: Int, view: TextView ): ValueAnimator {
+        val anim = ValueAnimator.ofInt(start, end)
+        anim.duration = FAB_ANIM_DURATION
+        anim.addUpdateListener { animation ->
+            view.layoutParams.width = animation?.animatedValue as Int
+            view.setLayoutParams(view.layoutParams)
+        }
+        return anim
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -76,15 +86,9 @@ class MainActivity : AppCompatActivity() {
                     if (expanded) {
                         if (dy >0 && scrollY > THRESHOLD_RECYCLERVIEW_Y) {
                             val view = mainActivity.findViewById<TextView>(R.id.expanded_fab)
-                            val END_WIDTH = mainActivity.resources.getDimensionPixelSize(R.dimen.dimen_56dp)
+                            val endWidth = mainActivity.resources.getDimensionPixelSize(R.dimen.dimen_56dp)
                             expanded = false
-                            val anim =
-                                    ValueAnimator.ofInt(view.measuredWidth, END_WIDTH)
-                            anim.duration = FAB_ANIM_DURATION
-                            anim.addUpdateListener { animation ->
-                                view.layoutParams.width = animation?.animatedValue as Int
-                                view.setLayoutParams(view.layoutParams)
-                            }
+                            val anim = createWidthAnimator(view.measuredWidth, endWidth, view)
                             anim.start()
 
                         }
@@ -92,16 +96,11 @@ class MainActivity : AppCompatActivity() {
                         if (dy < 0 &&
                                 scrollY < THRESHOLD_RECYCLERVIEW_Y) {
                             val view = mainActivity.findViewById<TextView>(R.id.expanded_fab)
-                            val END_WIDTH = mainActivity.resources.getDimensionPixelSize(R.dimen.dimen_160dp)
+                            val endWidth = mainActivity.resources.getDimensionPixelSize(R.dimen.dimen_160dp)
                             expanded = true
-                            val anim =
-                                    ValueAnimator.ofInt(view.measuredWidth, END_WIDTH)
-                            anim.duration = FAB_ANIM_DURATION
-                            anim.addUpdateListener { animation ->
-                                view.layoutParams.width = animation?.animatedValue as Int
-                                view.setLayoutParams(view.layoutParams)
-                            }
+                            val anim = createWidthAnimator(view.measuredWidth, endWidth, view)
                             anim.start()
+
                         }
                     }
                 }
