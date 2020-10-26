@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/buttonContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView android:id="@+id/expanded_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_56dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@drawable/stadium_fab"
+        android:textColor="@color/funColor"
+        android:paddingStart="@dimen/dimen_12dp"
+        android:drawablePadding="@dimen/dimen_12dp"
+        android:text="Capture Fun"
+        android:drawableTint="@color/funColor"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:maxLines="1"
+        android:elevation="@dimen/dimen_6dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
